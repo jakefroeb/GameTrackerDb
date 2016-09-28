@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Tracker</title>
+</head>
+<body>
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<form action="/create-game" method="post">
+    <input type="text" placeholder="Game Name" name="gameName" width="200"/>
+    <select name="gameGenre">
+        <option selected disabled>Genre</option>
+        <option value="adventure">Adventure</option>
+        <option value="strategy">Strategy</option>
+        <option value="rpg">RPG</option>
+        <option value="strategy">Strategy</option>
+    </select>
+    <select name="gamePlatform">
+        <option selected disabled>Platform</option>
+        <option value="pc">PC</option>
+        <option value="ps4">PS4</option>
+        <option value="xb1">Xbox 1</option>
+        <option value="wiiu">Wii U</option>
+    </select>
+    <input type="number" placeholder="Release Year" name="gameYear"/>
+    <button type="submit">Submit</button>
+</form>
+
+<ol>
+    {{#games}}
+    <li>{{game}} - {{genre}} - {{platform}} - {{releaseYear}}
+        <form action="/delete-game" method="post">
+            <input type="hidden" value="{{id}}" name="id"/>
+            <button type="submit">Delete</button>
+        </form>
+    <form action="/edit-game" method="post">
+        <input type="hidden" value="{{id}}" name="id"/>
+        <input type="hidden" value="{{game}}" name="game"/>
+        <button type="submit">Edit</button>
+    </form></li>
+    {{/games}}
+</ol>
+</body>
+</html>
